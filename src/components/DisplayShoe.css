@@ -1,0 +1,64 @@
+.shoe_image {
+  border: px gold solid;
+  border-radius: 30px 0 30px 0;
+  /* box-shadow: 1px 1px 1px white; */
+  overflow: hidden;
+  height: 100%;
+  margin: 5%;
+}
+.shoe_image img {
+  max-width: 100%;
+}
+.addShoe {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.add_title {
+  display: flex;
+  width: 70%;
+  justify-content: space-evenly;
+  padding: 1%;
+}
+
+.title {
+  width: 30%;
+  float: left;
+}
+.title::after {
+  content: ": ";
+}
+.inputProps {
+  width: 70%;
+  padding: 1%;
+  border: 1px rgb(156, 155, 155) dotted;
+}
+.title {
+  padding: 2%;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  background-color: rgb(255, 174, 0);
+}
+.udpate_Delete {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
+.edit,
+.delete {
+  border: none;
+  background-color: rgb(85, 170, 85);
+  color: whitesmoke;
+  padding: 3%;
+  flex: 1 1 60%;
+}
+.delete {
+  background-color: rgb(182, 51, 51);
+  flex: 1 1 40%;
+}

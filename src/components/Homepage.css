@@ -1,0 +1,32 @@
+.homepage-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  background: url("/src/images/backgroundRepeat.jpg") center center repeat
+    repeat;
+  background-size: auto;
+}
+.shoe-card {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  align-items: center;
+  color: rgb(100, 49, 49);
+  width: 200px;
+  height: 200px;
+  border: 2px rgb(240, 239, 232) solid;
+  border-radius: 0px 200px 200px 200px;
+  -webkit-border-radius: 0px 200px 200px 200px;
+  -moz-border-radius: 0px 200px 200px 200px;
+  overflow: hidden;
+  box-shadow: 1px 1px 1px white;
+}
+img {
+  max-width: 100%;
+  margin: 1%;
+}
+.price {
+  margin: 1%;
+}
