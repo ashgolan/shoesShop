@@ -11,7 +11,7 @@ function ErrorPage() {
         backgroundColor: "black",
       }}
     >
-      <img className="errorImage" src={image}></img>
+      <img className="errorImage" src={image} alt={image}></img>
     </div>
   );
 }

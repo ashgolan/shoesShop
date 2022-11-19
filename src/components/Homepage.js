@@ -7,7 +7,7 @@ function Homepage(props) {
       <div className="shoe-card" key={p.id}>
         <Link to={`/DisplayShoe/${p.id}`}>
           {" "}
-          <img src={p.image}></img>{" "}
+          <img src={p.image} alt={p.image}></img>{" "}
         </Link>
         <h3 className="price">{p.price}$</h3>
       </div>

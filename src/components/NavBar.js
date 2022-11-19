@@ -8,7 +8,7 @@ export default function NavBar() {
     <ul className="nav-bar-container">
       <li>
         <Link to={"/"}>
-          <img className="logo" src={logo}></img>
+          <img className="logo" src={logo} alt={logo}></img>
         </Link>
       </li>
       <li>
@@ -22,7 +22,7 @@ export default function NavBar() {
       </li>
 
       <Link style={{ width: "10%" }} to={"/AddShoe"}>
-        <img className="add" src={addShoe}></img>
+        <img className="add" src={addShoe} alt={addShoe}></img>
       </Link>
     </ul>
   );
