@@ -37,7 +37,7 @@ function AddShoe(props) {
   };
 
   return (
-    <div>
+    <div className="addshoePage">
       <form
         onChange={() => setAddMessage(false)}
         onSubmit={addShoeHandler}
@@ -50,6 +50,9 @@ function AddShoe(props) {
             className="inputProps"
             type="text"
             value={values.brand}
+            onChange={(e) => {
+              setValues((p) => ({ ...p, brand: e.target.value }));
+            }}
           />
         </div>
         <div className="add_title">
@@ -59,6 +62,9 @@ function AddShoe(props) {
             className="inputProps"
             type="text"
             value={values.model}
+            onChange={(e) => {
+              setValues((p) => ({ ...p, model: e.target.value }));
+            }}
           />
         </div>
         <div className="add_title">
@@ -69,6 +75,9 @@ function AddShoe(props) {
             type="text"
             name="image"
             value={values.image}
+            onChange={(e) => {
+              setValues((p) => ({ ...p, image: e.target.value }));
+            }}
           />
         </div>
         <div className="add_title">
@@ -78,6 +87,9 @@ function AddShoe(props) {
             className="inputProps"
             type="number"
             value={values.price}
+            onChange={(e) => {
+              setValues((p) => ({ ...p, price: e.target.value }));
+            }}
           />
         </div>
         <div className="add_title">
@@ -87,6 +99,9 @@ function AddShoe(props) {
             className="inputProps"
             type="text"
             value={values.color}
+            onChange={(e) => {
+              setValues((p) => ({ ...p, color: e.target.value }));
+            }}
           />
         </div>
         <div className="add_title">
@@ -96,6 +111,9 @@ function AddShoe(props) {
             className="inputProps"
             type="text"
             value={values.size}
+            onChange={(e) => {
+              setValues((p) => ({ ...p, size: e.target.value }));
+            }}
           />
         </div>
         {addMessage && (

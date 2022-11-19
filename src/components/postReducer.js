@@ -14,13 +14,13 @@ export const postReducer = (state, action) => {
       };
     case "FETCH_SUCCESS":
       return {
-        ...state,
         loading: false,
         post: action.payload,
+        error: false,
       };
     case "FETCH_ERROR":
       return {
-        ...state,
+        loading: false,
         post: [],
         error: true,
       };

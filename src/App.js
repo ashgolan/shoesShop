@@ -18,8 +18,9 @@ function App() {
     const fetchData = async (url) => {
       try {
         dispatch({ type: ACTION_TYPES.FETCH_START });
-        const { data } = await axios.get(url);
-        dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
+        const response = await axios.get(url);
+        if (!response.statusText === "OK") throw Error("PAGE NOT FOUND");
+        dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: response.data });
       } catch {
         dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       }
@@ -35,6 +36,7 @@ function App() {
           <span className="loader"></span>
         </div>
       )}
+      {state.error && <ErrorPage />}
       <Routes>
         <Route
           path="/"
@@ -44,7 +46,7 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route
           path="/DisplayShoe/:id"
-          element={<DisplayShoe state={state} dispatch={dispatch}/>}
+          element={<DisplayShoe state={state} dispatch={dispatch} />}
         />
         <Route
           path="/AddShoe"

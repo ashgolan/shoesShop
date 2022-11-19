@@ -33,14 +33,18 @@ function DisplayShoe(props) {
     const fetchData = async (url, kindOfrequest) => {
       try {
         props.dispatch({ type: ACTION_TYPES.FETCH_START });
-        const { data } = await axios[kindOfrequest](url);
-        props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
+        const response = await axios[kindOfrequest](url);
+        if (!response.statusText === "OK") throw Error("PAGE NOT FOUND");
+        props.dispatch({
+          type: ACTION_TYPES.FETCH_SUCCESS,
+          payload: response.data,
+        });
         props.dispatch({
           type: ACTION_TYPES.FETCH_SUCCESS,
           payload: tempState,
         });
-        setValues(data);
-      } catch {
+        setValues(response.data);
+      } catch (e) {
         props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       }
     };
@@ -52,23 +56,26 @@ function DisplayShoe(props) {
   const updateData = async () => {
     try {
       props.dispatch({ type: ACTION_TYPES.FETCH_START });
-      const { data } = await axios.put(
+      const response = await axios.put(
         `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
         values
       );
-      props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
-      setValues(data);
+      if (!response.statusText === "OK") throw Error("PAGE NOT FOUND");
+      props.dispatch({
+        type: ACTION_TYPES.FETCH_SUCCESS,
+        payload: response.data,
+      });
+      setValues(response.data);
       const newData = tempState.map((shoe) => {
         if (shoe.id === shoeId.id) {
-          shoe = data;
+          shoe = response.data;
         }
         return shoe;
       });
       props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: newData });
       setChangeState((p) => ({ isChanged: true, state: "Item has Updated" }));
-    } catch {
+    } catch (e) {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-      console.log("error");
     }
   };
 
@@ -101,12 +108,16 @@ function DisplayShoe(props) {
         return shoe.id !== shoeId.id;
       });
       props.dispatch({ type: ACTION_TYPES.FETCH_START });
-      const { data } = await axios.delete(
+      const response = await axios.delete(
         `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
         values
       );
-      props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
-      setValues(data);
+      if (!response.statusText === "OK") throw Error("PAGE NOT FOUND");
+      props.dispatch({
+        type: ACTION_TYPES.FETCH_SUCCESS,
+        payload: response.data,
+      });
+      setValues(response.data);
       props.dispatch({
         type: ACTION_TYPES.FETCH_SUCCESS,
         payload: filteredData,
@@ -115,9 +126,8 @@ function DisplayShoe(props) {
       setTimeout(() => {
         navigate("/");
       }, 1000);
-    } catch {
+    } catch (e) {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-      console.log("error");
     }
   };
   const deleteHandler = function (e) {
@@ -211,7 +221,7 @@ function DisplayShoe(props) {
               disabled={disabled.disabled}
               name="price"
               className="display-inputProps"
-              type="text"
+              type="number"
               value={values.price}
               onChange={(e) => {
                 const Price = e.target.value;
