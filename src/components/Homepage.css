@@ -1,6 +1,6 @@
 .homepage-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background: url("/src/images/backgroundRepeat.jpg") center center repeat
@@ -14,8 +14,8 @@
   margin: 1%;
   align-items: center;
   color: rgb(100, 49, 49);
-  width: 200px;
-  height: 200px;
+  width: 18%;
+  /* height: 15%; */
   border: 2px rgb(240, 239, 232) solid;
   border-radius: 0px 200px 200px 200px;
   -webkit-border-radius: 0px 200px 200px 200px;
@@ -23,13 +23,14 @@
   overflow: hidden;
   box-shadow: 1px 1px 1px white;
 }
-img {
-  flex: 1 1 160px;
+
+.shoe-card img {
+  flex: 1 1 40%;
   max-width: 100%;
   max-height: 100%;
   /* margin: 1%; */
 }
-.price {
-  flex: 1 1 40px;
+.shoe-card .price {
+  flex: 1 1 20%;
   margin: 1%;
 }

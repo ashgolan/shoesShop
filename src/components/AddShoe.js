@@ -5,7 +5,7 @@ import { INITIAL_STATE, postReducer } from "./postReducer";
 import { ACTION_TYPES } from "./postActionTypes";
 import { useReducer } from "react";
 
-function AddShoe() {
+function AddShoe(props) {
   const [values, setValues] = useState({
     brand: "",
     model: "",
@@ -15,7 +15,7 @@ function AddShoe() {
     size: "",
   });
 
-  const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
+  //   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
 
   const addShoeHandler = async (e) => {
     e.preventDefault();
@@ -23,18 +23,18 @@ function AddShoe() {
     const newShoe = Object.fromEntries(formdata);
     setValues(newShoe);
     try {
-      dispatch({ type: ACTION_TYPES.FETCH_START });
+      props.dispatch({ type: ACTION_TYPES.FETCH_START });
       const { data } = await axios.post(
         "https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop",
         newShoe
       );
       console.log(data);
-      dispatch({
+      props.dispatch({
         type: ACTION_TYPES.FETCH_SUCCESS,
-        payload: [...state.post, data],
+        payload: [...props.state.post, data],
       });
     } catch {
-      dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       console.log("error");
     }
   };
@@ -64,7 +64,7 @@ function AddShoe() {
         </div>
         <div className="add_title">
           <label className="title">Size</label>
-          <input name="size" className="inputProps" type="number" />
+          <input name="size" className="inputProps" type="text" />
         </div>
         <button className="submit" type="submit">
           Add Shoe

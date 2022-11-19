@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Amarante&family=Average+Sans&family=Barrio&family=Cabin:wght@500&family=Ewert&family=Fira+Code:wght@700&family=Luckiest+Guy&family=Metal+Mania&family=Roboto:wght@700&family=Sail&family=Secular+One&display=swap");
 body {
   margin: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Average Sans", sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

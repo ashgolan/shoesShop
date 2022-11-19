@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 import logo from "../images/logo.png";
+import addShoe from "../images/addShoe.png";
 export default function NavBar() {
   return (
     <ul className="nav-bar-container">
@@ -20,10 +21,9 @@ export default function NavBar() {
         <Link to={"/ContactUs"}>Contact-us</Link>
       </li>
       <li>
-        <Link to={"/DisplayShoe"}>DisplayShoe</Link>
-      </li>
-      <li>
-        <Link to={"/AddShoe"}>+</Link>
+        <Link to={"/AddShoe"}>
+          <img style={{ width: "20%" }} src={addShoe}></img>
+        </Link>
       </li>
     </ul>
   );

@@ -20,11 +20,17 @@ function App() {
         </div>
       )}
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route
+          path="/"
+          element={<Homepage state={state} dispatch={dispatch} />}
+        />
         <Route path="/About" element={<About />} />
         <Route path="/ContactUs" element={<ContactUs />} />
-        <Route path="/DisplayShoe/:id" element={<DisplayShoe />} />
-        <Route path="/AddShoe" element={<AddShoe />} />
+        <Route
+          path="/DisplayShoe/:id"
+          element={<DisplayShoe state={state} dispatch={dispatch} />}
+        />
+        <Route path="/AddShoe" element={<AddShoe state={state} dispatch={dispatch} />} />
       </Routes>
     </div>
   );

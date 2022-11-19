@@ -1,3 +1,6 @@
+* {
+  overflow: hidden;
+}
 .shoe_image {
   border: px gold solid;
   border-radius: 30px 0 30px 0;
@@ -9,7 +12,7 @@
 .shoe_image img {
   max-width: 100%;
 }
-.addShoe {
+.display-shoe {
   width: 100%;
   height: 100%;
   display: flex;
@@ -19,31 +22,29 @@
   align-content: center;
 }
 
-.add_title {
+.display_title {
   display: flex;
   width: 70%;
   justify-content: space-evenly;
   padding: 1%;
 }
 
-.title {
-  width: 30%;
-  float: left;
-}
-.title::after {
-  content: ": ";
-}
-.inputProps {
+.display-inputProps {
   width: 70%;
   padding: 1%;
   border: 1px rgb(156, 155, 155) dotted;
 }
-.title {
+.display-title {
+  width: 30%;
+  float: left;
   padding: 2%;
   font-size: 1rem;
   font-weight: bold;
   border: none;
   background-color: rgb(255, 174, 0);
+}
+.display-title::after {
+  content: ": ";
 }
 .udpate_Delete {
   width: 50%;
@@ -57,8 +58,15 @@
   color: whitesmoke;
   padding: 3%;
   flex: 1 1 60%;
+  cursor: pointer;
+}
+.edit:hover {
+  background-color: rgb(44, 107, 44);
 }
 .delete {
   background-color: rgb(182, 51, 51);
   flex: 1 1 40%;
+}
+.delete:hover {
+  background-color: rgb(161, 20, 20);
 }
