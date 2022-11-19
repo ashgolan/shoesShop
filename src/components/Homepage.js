@@ -25,8 +25,8 @@ function Homepage(props) {
       <div className="shoe-card" key={p.id}>
         <Link to={`/DisplayShoe/${p.id}`}>
           <img src={p.image}></img>
-          <h4>{p.price}$</h4>
         </Link>
+        <h4>{p.price}$</h4>
       </div>
     );
   });

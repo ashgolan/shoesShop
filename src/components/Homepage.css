@@ -24,9 +24,12 @@
   box-shadow: 1px 1px 1px white;
 }
 img {
+  flex: 1 1 160px;
   max-width: 100%;
-  margin: 1%;
+  max-height: 100%;
+  /* margin: 1%; */
 }
 .price {
+  flex: 1 1 40px;
   margin: 1%;
 }

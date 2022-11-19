@@ -6,7 +6,11 @@ import { ACTION_TYPES } from "./postActionTypes";
 import "./DisplayShoe.css";
 function DisplayShoe() {
   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
-
+  const [disabled, setDisabled] = useState({
+    edit: "Edit",
+    delete: "Delete",
+    disabled: true,
+  });
   const [values, setValues] = useState({
     brand: "",
     model: "",
@@ -17,10 +21,10 @@ function DisplayShoe() {
   });
   const shoeId = useParams();
   useEffect(() => {
-    const fetchData = async (url) => {
+    const fetchData = async (url, kindOfrequest) => {
       try {
         dispatch({ type: ACTION_TYPES.FETCH_START });
-        const { data } = await axios.get(url);
+        const { data } = await axios[kindOfrequest](url);
         dispatch({ type: ACTION_TYPES.FETCH_TEMP, payload: data });
         setValues(data);
       } catch {
@@ -29,9 +33,60 @@ function DisplayShoe() {
       }
     };
     fetchData(
-      `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`
+      `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
+      "get"
     );
   }, []);
+
+  const updateData = async () => {
+    try {
+      dispatch({ type: ACTION_TYPES.FETCH_START });
+      const { data } = await axios.put(
+        `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
+        values
+      );
+      dispatch({ type: ACTION_TYPES.FETCH_TEMP, payload: data });
+      setValues(data);
+      console.log(data);
+      console.log(values);
+    } catch {
+      dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      console.log("error");
+    }
+  };
+
+  const editHandler = function (e) {
+    e.preventDefault();
+    if (e.target.textContent === "Edit") {
+      setDisabled((prev) => ({
+        disabled: false,
+        edit: "Confirm",
+        delete: "Cancel",
+      }));
+    } else {
+      setDisabled((prev) => ({
+        disabled: true,
+        edit: "Edit",
+        delete: "Delete",
+      }));
+      updateData();
+    }
+  };
+
+  const deleteHandler = function (e) {
+    e.preventDefault();
+    if (e.target.textContent === "Delete") {
+      setDisabled((prev) => ({
+        ...prev,
+        delete: "Confirm",
+      }));
+    } else {
+      setDisabled((prev) => ({
+        ...prev,
+        delete: "Delete",
+      }));
+    }
+  };
   return (
     <div
       style={{
@@ -50,7 +105,7 @@ function DisplayShoe() {
         <div className="add_title">
           <label className="title">Brand</label>
           <input
-            disabled
+            disabled={disabled.disabled}
             name="brand"
             className="inputProps"
             type="text"
@@ -64,7 +119,7 @@ function DisplayShoe() {
         <div className="add_title">
           <label className="title">Model</label>
           <input
-            disabled
+            disabled={disabled.disabled}
             name="model"
             className="inputProps"
             type="text"
@@ -78,7 +133,7 @@ function DisplayShoe() {
         <div className="add_title">
           <label className="title">Image</label>
           <input
-            disabled
+            disabled={disabled.disabled}
             className="inputProps"
             type="text"
             name="image"
@@ -92,7 +147,7 @@ function DisplayShoe() {
         <div className="add_title">
           <label className="title">Price</label>
           <input
-            disabled
+            disabled={disabled.disabled}
             name="price"
             className="inputProps"
             type="number"
@@ -106,7 +161,7 @@ function DisplayShoe() {
         <div className="add_title">
           <label className="title">Color</label>
           <input
-            disabled
+            disabled={disabled.disabled}
             name="color"
             className="inputProps"
             type="text"
@@ -120,7 +175,7 @@ function DisplayShoe() {
         <div className="add_title">
           <label className="title">Size</label>
           <input
-            disabled
+            disabled={disabled.disabled}
             name="size"
             className="inputProps"
             type="number"
@@ -132,11 +187,11 @@ function DisplayShoe() {
           />
         </div>
         <div className="udpate_Delete">
-          <button className="edit" type="submit">
-            Edit
+          <button onClick={editHandler} className="edit" type="submit">
+            {disabled.edit}
           </button>
-          <button className="delete" type="submit">
-            Delete
+          <button onClick={deleteHandler} className="delete" type="submit">
+            {disabled.delete}
           </button>
         </div>
       </form>
