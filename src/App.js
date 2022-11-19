@@ -44,7 +44,7 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route
           path="/DisplayShoe/:id"
-          element={<DisplayShoe state={state} dispatch={dispatch} />}
+          element={<DisplayShoe state={state} dispatch={dispatch}/>}
         />
         <Route
           path="/AddShoe"

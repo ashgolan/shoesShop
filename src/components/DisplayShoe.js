@@ -41,7 +41,6 @@ function DisplayShoe(props) {
       setValues(data);
     } catch {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-      console.log("error");
     }
   };
   useEffect(() => {
@@ -49,7 +48,7 @@ function DisplayShoe(props) {
       `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
       "get"
     );
-  }, []);
+  }, [shoeId.id]);
 
   const updateData = async () => {
     try {
@@ -60,7 +59,6 @@ function DisplayShoe(props) {
       );
       props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
       setValues(data);
-      console.log(tempState);
       const newData = tempState.map((shoe) => {
         if (shoe.id === shoeId.id) {
           shoe = data;
