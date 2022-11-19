@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import { ACTION_TYPES } from "./components/postActionTypes";
 import NavBar from "./components/NavBar";
