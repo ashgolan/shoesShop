@@ -29,21 +29,21 @@ function DisplayShoe(props) {
   const shoeId = useParams();
   const tempState = props.state.post;
 
-  const fetchData = async (url, kindOfrequest) => {
-    try {
-      props.dispatch({ type: ACTION_TYPES.FETCH_START });
-      const { data } = await axios[kindOfrequest](url);
-      props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
-      props.dispatch({
-        type: ACTION_TYPES.FETCH_SUCCESS,
-        payload: tempState,
-      });
-      setValues(data);
-    } catch {
-      props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-    }
-  };
   useEffect(() => {
+    const fetchData = async (url, kindOfrequest) => {
+      try {
+        props.dispatch({ type: ACTION_TYPES.FETCH_START });
+        const { data } = await axios[kindOfrequest](url);
+        props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
+        props.dispatch({
+          type: ACTION_TYPES.FETCH_SUCCESS,
+          payload: tempState,
+        });
+        setValues(data);
+      } catch {
+        props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      }
+    };
     fetchData(
       `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
       "get"
