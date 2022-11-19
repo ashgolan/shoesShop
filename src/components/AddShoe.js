@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./AddShoe.css";
 import { ACTION_TYPES } from "./postActionTypes";
-import { useReducer } from "react";
 
 function AddShoe(props) {
   const [addMessage, setAddMessage] = useState(false);

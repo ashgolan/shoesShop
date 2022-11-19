@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { ACTION_TYPES } from "./postActionTypes";
@@ -60,7 +60,14 @@ function DisplayShoe(props) {
       );
       props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
       setValues(data);
-      props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: tempState });
+      console.log(tempState);
+      const newData = tempState.map((shoe) => {
+        if (shoe.id === shoeId.id) {
+          shoe = data;
+        }
+        return shoe;
+      });
+      props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: newData });
       setChangeState((p) => ({ isChanged: true, state: "Item has Updated" }));
     } catch {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
@@ -143,12 +150,13 @@ function DisplayShoe(props) {
     <div
       style={{
         width: "100%",
-        height: "100%",
+        height: "80vh",
         display: "flex",
         flexWrap: "wrap",
         justifyContent: "space-between",
         alignContent: "center",
         alignItems: "center",
+        overflow: "hidden",
       }}
     >
       {!props.state.loading && (

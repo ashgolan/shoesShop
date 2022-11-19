@@ -21,8 +21,8 @@ export default function NavBar() {
         <Link to={"/ContactUs"}>Contact-us</Link>
       </li>
 
-      <Link to={"/AddShoe"}>
-        <img style={{ width: "20%" }} src={addShoe}></img>
+      <Link style={{ width: "10%" }} to={"/AddShoe"}>
+        <img className="add" src={addShoe}></img>
       </Link>
     </ul>
   );
