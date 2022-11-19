@@ -4,7 +4,7 @@ import aboutUs from "../images/About-Us.png";
 function About() {
   return (
     <div>
-      <img className="aboutImg" src={aboutUs}></img>
+      <img className="aboutImg" src={aboutUs} alt={aboutUs}></img>
       <h5>
         ShoesShop is all about footwear. We have been in the shoe business for
         over 130 years. Yes, you read that correctly, over a century plus a
