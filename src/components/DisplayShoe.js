@@ -48,8 +48,7 @@ function DisplayShoe(props) {
       `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
       "get"
     );
-  }, [shoeId.id]);
-
+  }, []);
   const updateData = async () => {
     try {
       props.dispatch({ type: ACTION_TYPES.FETCH_START });
