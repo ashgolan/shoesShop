@@ -29,27 +29,27 @@ function DisplayShoe(props) {
   const shoeId = useParams();
   const tempState = props.state.post;
 
+  const fetchData = async (url, kindOfrequest) => {
+    try {
+      props.dispatch({ type: ACTION_TYPES.FETCH_START });
+      const { data } = await axios[kindOfrequest](url);
+      props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
+      props.dispatch({
+        type: ACTION_TYPES.FETCH_SUCCESS,
+        payload: tempState,
+      });
+      setValues(data);
+    } catch {
+      props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
+      console.log("error");
+    }
+  };
   useEffect(() => {
-    const fetchData = async (url, kindOfrequest) => {
-      try {
-        props.dispatch({ type: ACTION_TYPES.FETCH_START });
-        const { data } = await axios[kindOfrequest](url);
-        props.dispatch({ type: ACTION_TYPES.FETCH_SUCCESS, payload: data });
-        props.dispatch({
-          type: ACTION_TYPES.FETCH_SUCCESS,
-          payload: tempState,
-        });
-        setValues(data);
-      } catch {
-        props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-        console.log("error");
-      }
-    };
     fetchData(
       `https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop/${shoeId.id}`,
       "get"
     );
-  }, [shoeId.id]);
+  }, []);
 
   const updateData = async () => {
     try {
@@ -161,7 +161,7 @@ function DisplayShoe(props) {
     >
       {!props.state.loading && (
         <div className="shoe_image">
-          <img src={values.image} />
+          <img src={values.image} alt={values.image} />
         </div>
       )}
       {!props.state.loading && (
