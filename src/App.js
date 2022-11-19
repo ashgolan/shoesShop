@@ -8,6 +8,7 @@ import ContactUs from "./components/ContactUs";
 import DisplayShoe from "./components/DisplayShoe";
 import { INITIAL_STATE, postReducer } from "./components/postReducer";
 import "./App.css";
+import ErrorPage from "./components/ErrorPage";
 function App() {
   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
 
@@ -30,7 +31,11 @@ function App() {
           path="/DisplayShoe/:id"
           element={<DisplayShoe state={state} dispatch={dispatch} />}
         />
-        <Route path="/AddShoe" element={<AddShoe state={state} dispatch={dispatch} />} />
+        <Route
+          path="/AddShoe"
+          element={<AddShoe state={state} dispatch={dispatch} />}
+        />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

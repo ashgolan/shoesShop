@@ -1,7 +1,6 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { INITIAL_STATE, postReducer } from "./postReducer";
 import { ACTION_TYPES } from "./postActionTypes";
 import "./Homepage.css";
 function Homepage(props) {
@@ -26,7 +25,7 @@ function Homepage(props) {
           {" "}
           <img src={p.image}></img>{" "}
         </Link>
-        <h4>{p.price}$</h4>
+        <h3 className="price">{p.price}$</h3>
       </div>
     );
   });

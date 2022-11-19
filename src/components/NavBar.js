@@ -20,11 +20,10 @@ export default function NavBar() {
       <li>
         <Link to={"/ContactUs"}>Contact-us</Link>
       </li>
-      <li>
-        <Link to={"/AddShoe"}>
-          <img style={{ width: "20%" }} src={addShoe}></img>
-        </Link>
-      </li>
+
+      <Link to={"/AddShoe"}>
+        <img style={{ width: "20%" }} src={addShoe}></img>
+      </Link>
     </ul>
   );
 }

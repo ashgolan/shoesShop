@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddShoe.css";
-import { INITIAL_STATE, postReducer } from "./postReducer";
 import { ACTION_TYPES } from "./postActionTypes";
 import { useReducer } from "react";
 
 function AddShoe(props) {
+  const [addMessage, setAddMessage] = useState(false);
   const [values, setValues] = useState({
     brand: "",
     model: "",
@@ -15,10 +15,9 @@ function AddShoe(props) {
     size: "",
   });
 
-  //   const [state, dispatch] = useReducer(postReducer, INITIAL_STATE);
-
   const addShoeHandler = async (e) => {
     e.preventDefault();
+    setAddMessage(false);
     const formdata = new FormData(e.target);
     const newShoe = Object.fromEntries(formdata);
     setValues(newShoe);
@@ -28,11 +27,11 @@ function AddShoe(props) {
         "https://6374adb808104a9c5f85d1fb.mockapi.io/shoesShop",
         newShoe
       );
-      console.log(data);
       props.dispatch({
         type: ACTION_TYPES.FETCH_SUCCESS,
         payload: [...props.state.post, data],
       });
+      setAddMessage(true);
     } catch {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       console.log("error");
@@ -41,7 +40,11 @@ function AddShoe(props) {
 
   return (
     <div>
-      <form onSubmit={addShoeHandler} className="addShoe">
+      <form
+        onChange={() => setAddMessage(false)}
+        onSubmit={addShoeHandler}
+        className="addShoe"
+      >
         <div className="add_title">
           <label className="title">Brand</label>
           <input name="brand" className="inputProps" type="text" />
@@ -52,7 +55,7 @@ function AddShoe(props) {
         </div>
         <div className="add_title">
           <label className="title">Image</label>
-          <input className="inputProps" type="text" name="image" />
+          <input required className="inputProps" type="text" name="image" />
         </div>
         <div className="add_title">
           <label className="title">Price</label>
@@ -66,6 +69,9 @@ function AddShoe(props) {
           <label className="title">Size</label>
           <input name="size" className="inputProps" type="text" />
         </div>
+        {addMessage && (
+          <h5 style={{ color: "brown" }}>The shoe was added succefuly</h5>
+        )}
         <button className="submit" type="submit">
           Add Shoe
         </button>

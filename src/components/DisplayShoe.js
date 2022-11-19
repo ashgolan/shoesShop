@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useReducer } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ACTION_TYPES } from "./postActionTypes";
 import "./DisplayShoe.css";
-
 function DisplayShoe(props) {
+  const navigate = useNavigate();
+
   const [changeState, setChangeState] = useState({
     isChanged: false,
     state: null,
@@ -107,6 +108,9 @@ function DisplayShoe(props) {
         payload: filteredData,
       });
       setChangeState((p) => ({ isChanged: true, state: "Item has Deleted" }));
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } catch {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
       console.log("error");
@@ -141,6 +145,7 @@ function DisplayShoe(props) {
         width: "100%",
         height: "100%",
         display: "flex",
+        flexWrap: "wrap",
         justifyContent: "space-between",
         alignContent: "center",
         alignItems: "center",
@@ -201,7 +206,7 @@ function DisplayShoe(props) {
               disabled={disabled.disabled}
               name="price"
               className="display-inputProps"
-              type="number"
+              type="text"
               value={values.price}
               onChange={(e) => {
                 const Price = e.target.value;
