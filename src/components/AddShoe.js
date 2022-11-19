@@ -33,7 +33,6 @@ function AddShoe(props) {
       setAddMessage(true);
     } catch {
       props.dispatch({ type: ACTION_TYPES.FETCH_ERROR });
-      console.log("error");
     }
   };
 
@@ -46,27 +45,58 @@ function AddShoe(props) {
       >
         <div className="add_title">
           <label className="title">Brand</label>
-          <input name="brand" className="inputProps" type="text" />
+          <input
+            name="brand"
+            className="inputProps"
+            type="text"
+            value={values.brand}
+          />
         </div>
         <div className="add_title">
           <label className="title">Model</label>
-          <input name="model" className="inputProps" type="text" />
+          <input
+            name="model"
+            className="inputProps"
+            type="text"
+            value={values.model}
+          />
         </div>
         <div className="add_title">
           <label className="title">Image</label>
-          <input required className="inputProps" type="text" name="image" />
+          <input
+            required
+            className="inputProps"
+            type="text"
+            name="image"
+            value={values.image}
+          />
         </div>
         <div className="add_title">
           <label className="title">Price</label>
-          <input name="price" className="inputProps" type="number" />
+          <input
+            name="price"
+            className="inputProps"
+            type="number"
+            value={values.price}
+          />
         </div>
         <div className="add_title">
           <label className="title">Color</label>
-          <input name="color" className="inputProps" type="text" />
+          <input
+            name="color"
+            className="inputProps"
+            type="text"
+            value={values.color}
+          />
         </div>
         <div className="add_title">
           <label className="title">Size</label>
-          <input name="size" className="inputProps" type="text" />
+          <input
+            name="size"
+            className="inputProps"
+            type="text"
+            value={values.size}
+          />
         </div>
         {addMessage && (
           <h5 style={{ color: "brown" }}>The shoe was added succefuly</h5>
