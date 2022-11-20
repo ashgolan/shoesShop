@@ -93,7 +93,16 @@ function DisplayShoe(props) {
         edit: "Edit",
         delete: "Delete",
       }));
-      updateData();
+      let isEmpty = false;
+      for (let value in values) {
+        if (values[value] === "") isEmpty = true;
+      }
+      !isEmpty
+        ? updateData()
+        : setChangeState((p) => ({
+            isChanged: true,
+            state: "Some Values are empty !!",
+          }));
     } else {
       setDisabled((prev) => ({
         disabled: true,

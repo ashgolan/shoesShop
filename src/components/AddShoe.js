@@ -46,6 +46,7 @@ function AddShoe(props) {
         <div className="add_title">
           <label className="title">Brand</label>
           <input
+            required
             name="brand"
             className="inputProps"
             type="text"
@@ -58,6 +59,7 @@ function AddShoe(props) {
         <div className="add_title">
           <label className="title">Model</label>
           <input
+            required
             name="model"
             className="inputProps"
             type="text"
@@ -83,6 +85,7 @@ function AddShoe(props) {
         <div className="add_title">
           <label className="title">Price</label>
           <input
+            required
             name="price"
             className="inputProps"
             type="number"
@@ -95,6 +98,7 @@ function AddShoe(props) {
         <div className="add_title">
           <label className="title">Color</label>
           <input
+            required
             name="color"
             className="inputProps"
             type="text"
@@ -107,6 +111,7 @@ function AddShoe(props) {
         <div className="add_title">
           <label className="title">Size</label>
           <input
+            required
             name="size"
             className="inputProps"
             type="text"
